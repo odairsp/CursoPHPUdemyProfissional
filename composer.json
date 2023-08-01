@@ -1,0 +1,19 @@
+{
+    "name": "user/curso-php-udemy-profissional",
+    "description": "udemy-php-profissional",
+    "autoload": {
+        "files": [
+            "app/helpers/constants.php"
+        ],
+        "psr-4": {
+            "app\\": "app"
+        }
+    },
+    "authors": [
+        {
+            "name": "odair",
+            "email": "odair.sp@hotmail.com"
+        }
+    ],
+    "require": {}
+}
