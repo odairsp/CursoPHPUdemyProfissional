@@ -1,5 +1,8 @@
 <?php
-require "../vendor/autoload.php";
+require "./bootstrap.php";
+
+router();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
