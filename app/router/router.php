@@ -13,8 +13,6 @@ function exactMatchUriInArrayRoutes(string $uri, array $routes)
 }
 
 
-
-
 function regularExpressionMatchArrayRoutes($uri, $routes)
 {
     $matchedUri = array_filter(
@@ -31,7 +29,6 @@ function regularExpressionMatchArrayRoutes($uri, $routes)
 function params($uri, $matchedUri)
 {
     if (!empty($matchedUri)) {
-
         $matchedToGetParams = array_keys($matchedUri)[0];
         $params = array_diff(
             $uri,
@@ -39,12 +36,11 @@ function params($uri, $matchedUri)
         );
         return $params;
     }
-
     return [];
 }
+
 function paramsFormat($uri, $params)
 {
-
     $paramsData = [];
     foreach ($params as $key => $param) {
         $paramsData[$uri[$key - 1]] = $param;
@@ -58,13 +54,19 @@ function router()
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $routes = routes();
     $matchedUri = exactMatchUriInArrayRoutes($uri, $routes);
-
+    $params = [];
+    
     if (empty($matchedUri)) {
         $matchedUri =  regularExpressionMatchArrayRoutes($uri, $routes);
         $uri = explode('/', ltrim($uri, '/'));
         $params = params($uri, $matchedUri);
         $params = paramsFormat($uri, $params);
-        var_dump($params);
     }
-    
+
+    if (!empty($matchedUri)) {
+        loadController($matchedUri, $params);
+        return;
+    }
+
+    throw new Exception("Algo deu errado!");
 }

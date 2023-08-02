@@ -7,3 +7,4 @@ function dd($all)
 }
 
 define('TESTE', 'teste');
+define('CONTROLLER_PATH','app\\controllers\\');

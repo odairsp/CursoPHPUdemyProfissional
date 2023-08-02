@@ -1,7 +1,12 @@
 <?php
 require "./bootstrap.php";
 
-router();
+try {
+    router();
+} catch (Exception $e) {
+    var_dump($e->getMessage());
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +22,7 @@ router();
 
 <body>
     <h2>Index</h2>
-    
+
 </body>
 
 </html>
