@@ -2,8 +2,13 @@
 
 namespace app\controllers;
 
-class Home{
-    public function index($params){
-        var_dump($params);
+class Home
+{
+    public function index($params)
+    {
+        return [
+            'views' =>'home',
+            'data' => ['name'=>'Odair','views'=>'home']
+        ];
     }
 }

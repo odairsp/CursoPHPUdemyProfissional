@@ -10,10 +10,10 @@ function loadController($matchedUri, $params)
         throw new Exception("Controller '{$controller}', não existe!");
     }
     
-    $controllerInstance = new  $controllerWithNamespace;
+    $controllerInstance = new $controllerWithNamespace;
     if(!method_exists($controllerInstance, $method)){
         throw new Exception("Método '{$method}', não existe no controller '{$controller}'!");
     }
 
-    $controllerInstance->$method($params);
+    return $controllerInstance->$method($params);
 }
