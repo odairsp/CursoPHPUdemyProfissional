@@ -13,7 +13,6 @@ class User
 
     public function show($params)
     {
-        var_dump($params);
 
         if (!isset($params)) {
             return redirect('/');
@@ -27,6 +26,6 @@ class User
 
     public function create($params)
     {
-        var_dump('create');
+        var_dump('User@create');
     }
 }
