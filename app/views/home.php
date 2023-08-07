@@ -1,8 +1,7 @@
 <h2>Users</h2>
 
 <div>
-    <ul>
-
+    <ul id="home-list">
         <?php
         if (isset($users)) :
             foreach ($users as $user) : ?>
@@ -11,7 +10,5 @@
         <?php else : ?>
             <li><?= $user->nome ?> | <a href="/user/<?= $user->id ?>">detalhes</a></li>
         <?php endif ?>
-
     </ul>
-
 </div>

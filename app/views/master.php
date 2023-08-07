@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <header>
+        <div id="header">
+            <?php require "partials/header.php" ?>
+        </div>
+    </header>
     <div class="container">
         <?php require VIEWS . $view; ?>
     </div>
