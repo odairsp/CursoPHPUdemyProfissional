@@ -1,7 +1,22 @@
 <h2>Login</h2>
 
-<div class="container mb-3">
-  <label for="" class="form-label">Email</label>
-  <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId">
-  <small id="emailHelpId" class="form-text text-muted">Help text</small>
-</div>
+<form action="/login" method="post">
+    <div class="container mb-3">
+        <div>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId">
+            <!-- <small id="emailHelpId" class="form-text text-muted">Help text</small> -->
+
+        </div>
+        <div>
+
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" name="password" id="" aria-describedby="password">
+            <!-- <small id="password" class="form-text text-muted">Help text</small> -->
+        </div>
+        <div>
+            <button class="btn btn-success mt-3" type="submit">Login</button>
+        </div>
+    </div>
+
+</form>
