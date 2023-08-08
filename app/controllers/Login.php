@@ -18,6 +18,8 @@ class Login
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        
+
         if (empty($email) || empty($password)) {
             return redirect('/login');
         }
@@ -26,10 +28,13 @@ class Login
         if (!$user) {
             return redirect('/login');
         }
+        
 
-        if (!password_verify($password, $user->password)) {
+        if (! $password == $user->password) {
+            
             return redirect('/login');
         }
+        var_dump($user);
 
         $_SESSION['logged'] = $user;
         return redirect('/');

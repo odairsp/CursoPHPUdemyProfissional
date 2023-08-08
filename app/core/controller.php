@@ -15,5 +15,10 @@ function loadController($matchedUri, $params)
         throw new Exception("Método '{$method}', não existe no controller '{$controller}'!");
     }
 
-    return $controllerInstance->$method($params);
+    $controller = $controllerInstance->$method($params);
+
+    if(!$_SERVER['REQUEST_METHOD']==='POST'){
+        die();
+    }
+    return $controller;
 }
