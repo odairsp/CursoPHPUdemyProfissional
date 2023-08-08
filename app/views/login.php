@@ -2,7 +2,10 @@
 
 <form action="/login" method="post">
     <div class="container mb-3">
-        <div>
+    
+    <?= getFlash('message')?>    
+    
+    <div>
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId" value="odair@email.com">
             <!-- <small id="emailHelpId" class="form-text text-muted">Help text</small> -->

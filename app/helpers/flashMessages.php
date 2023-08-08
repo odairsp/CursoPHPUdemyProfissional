@@ -13,6 +13,6 @@ function getFlash($index, $style = 'danger')
         $flash = $_SESSION['flash'][$index];
         unset($_SESSION['flash'][$index]);
 
-        return "<span>{$flash}</span>";
+        return "<div class='mt-2 mb-2 p-1 alert alert-" . $style . "'>" . $flash . "</div>";
     }
 }

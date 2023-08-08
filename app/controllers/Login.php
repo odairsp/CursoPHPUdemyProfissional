@@ -21,20 +21,24 @@ class Login
         
 
         if (empty($email) || empty($password)) {
-            return redirect('/login');
-        }
-
-        $user = findBy('users', 'email', $email);
-        if (!$user) {
+            setFlash('message','Usuário ou senha errados');
             return redirect('/login');
         }
         
-
-        if (! $password == $user->password) {
+        $user = findBy('users', 'email', $email);
+        if (!$user) {
             
+            setFlash('message','Usuário ou senha errados');
             return redirect('/login');
         }
-        var_dump($user);
+        
+        
+        if (! $password == $user->password) {
+            
+            setFlash('message','Usuário ou senha errados');
+            return redirect('/login');
+        }
+        
 
         $_SESSION['logged'] = $user;
         return redirect('/');
