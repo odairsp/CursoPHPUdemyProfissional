@@ -18,29 +18,30 @@ class Login
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        
 
         if (empty($email) || empty($password)) {
-            setFlash('message','Usuário ou senha errados');
-            return redirect('/login');
+            return setMessageAndRedirect('message', 'Usuário ou senha em branco!', '/login');
         }
-        
-        $user = findBy('users', 'email', $email);
-        if (!$user) {
-            
-            setFlash('message','Usuário ou senha errados');
-            return redirect('/login');
-        }
-        
-        
-        if (! $password == $user->password) {
-            
-            setFlash('message','Usuário ou senha errados');
-            return redirect('/login');
-        }
-        
 
-        $_SESSION['logged'] = $user;
+        $user = findBy('users', 'email', $email);
+
+        if (!$user) {
+
+            return setMessageAndRedirect('message', 'Usuário inexistente!', '/login');
+        }
+
+        if ($password != $user->password) {
+
+            return setMessageAndRedirect('message', 'Usuário ou senha errados', '/login');
+        }
+
+        $_SESSION[LOGGED] = $user;
+        return redirect('/');
+    }
+
+    function logout()
+    {
+        unset($_SESSION[LOGGED]);
         return redirect('/');
     }
 }
