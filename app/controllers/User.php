@@ -31,4 +31,18 @@ class User
             'data' => ['title' => 'Create']
         ];
     }
+
+    public function store()
+    {
+        $validate = validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|email|unique',
+            'password' => 'required|maxLen'
+        ]);
+
+        if(!$validate){
+            return setMessageAndRedirect('message','Algo deu errado!','/user/create');
+        }
+    }
 }
