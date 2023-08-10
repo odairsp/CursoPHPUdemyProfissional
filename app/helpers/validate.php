@@ -3,42 +3,36 @@
 function validate(array $validations)
 {
     $result = [];
-    $param = '';
 
-    foreach ($validations as $field => $validate) {
-        if (!str_contains($validate, '|')) {
-            if (str_contains($validate, ':')) {
-                [$validade, $param] = explode(':', $validate);
-            }
-            $result[$field] = $validate($field, $param);
+    foreach ($validations as $field => $validateTypes) {
+        if (str_contains($validateTypes, '|')) {
+            $validateTypes = explode('|', $validateTypes);
+            $result[$field] = multipleValidations($field, $validateTypes);
         } else {
-            $result[$field] = multipleValidations($field, $validate, $param);
+            $result[$field] = singleValidation($field, $validateTypes);
         }
     }
-
-    if (in_array(false, $result)) {
-        return false;
-    }
-
     return $result;
 }
-function singleValidations($field, $validate, $param)
-{
 
-}
 
-function multipleValidations($field, $validate, $param)
+function multipleValidations($field, array $validateTypes)
 {
     $result = [];
 
-    $explodePipeValidate = explode('|', $validate);
-    foreach ($explodePipeValidate as $validate) {
-        if (str_contains($validate, ':')) {
-            [$validate, $param] = explode(':', $validate);
-        }
-        $result[$field] = $validate($field, $param);
+    foreach ($validateTypes as $validadeType) {
+        $result[$field] = singleValidation($field, $validadeType);
     }
-    return $result;
+    return $result[$field];
+}
+
+function singleValidation($field, $validateType)
+{
+    if (str_contains($validateType, ":")) {
+        [$validateType, $validateTypeParam] = explode(":", $validateType);
+        return $validateType($field, $validateTypeParam);
+    }
+    return $validateType($field);
 }
 
 
@@ -73,7 +67,6 @@ function email($field)
     }
     return filter_input(INPUT_POST, $field, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
-
 
 function maxLen($field, $param)
 {

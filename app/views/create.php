@@ -1,5 +1,6 @@
 <h2>Create user</h2>
 
+<?= getFlash('message') ?>
 <form action="/user/store" method="post">
     <div class="container mb-3">
 
