@@ -3,27 +3,12 @@
 function validate(array $validations)
 {
     $result = [];
-
     foreach ($validations as $field => $validateTypes) {
-        if (str_contains($validateTypes, '|')) {
-            $validateTypes = explode('|', $validateTypes);
-            $result[$field] = multipleValidations($field, $validateTypes);
-        } else {
-            $result[$field] = singleValidation($field, $validateTypes);
-        }
+        $result[$field] = (str_contains($validateTypes, '|')) ?
+            multipleValidations($field, $validateTypes) :
+            singleValidation($field, $validateTypes);
     }
     return $result;
-}
-
-
-function multipleValidations($field, array $validateTypes)
-{
-    $result = [];
-
-    foreach ($validateTypes as $validadeType) {
-        $result[$field] = singleValidation($field, $validadeType);
-    }
-    return $result[$field];
 }
 
 function singleValidation($field, $validateType)
@@ -33,6 +18,17 @@ function singleValidation($field, $validateType)
         return $validateType($field, $validateTypeParam);
     }
     return $validateType($field);
+}
+
+function multipleValidations($field, $validateTypes)
+{
+    $result = [];
+    $validateTypes = explode('|', $validateTypes);
+
+    foreach ($validateTypes as $validadeType) {
+        $result[$field] = singleValidation($field, $validadeType);
+    }
+    return $result[$field];
 }
 
 
