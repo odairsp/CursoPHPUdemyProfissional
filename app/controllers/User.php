@@ -7,13 +7,11 @@ class User
 
     public function index($params)
     {
-
         return ['title' => 'Index', 'data' => 'data'];
     }
 
     public function show($params)
     {
-
         if (!isset($params)) {
             return redirect('/');
         }
@@ -24,7 +22,7 @@ class User
         ];
     }
 
-    public function create($params)
+    public function create()
     {
         return [
             'view' => 'create.php',
@@ -37,12 +35,12 @@ class User
         $validate = validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'email' => 'required|email|unique',
-            'password' => 'required|maxLen'
+            'email' => 'email|unique:users',
+            'password' => 'required|maxLen:5'
         ]);
 
-        if(!$validate){
-            return setMessageAndRedirect('message','Algo deu errado!','/user/create');
+        if (!$validate) {
+            return redirect('/user/create');
         }
     }
 }

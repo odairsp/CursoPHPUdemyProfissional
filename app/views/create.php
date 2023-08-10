@@ -1,10 +1,7 @@
 <h2>Create user</h2>
 
-
 <form action="/user/store" method="post">
     <div class="container mb-3">
-
-
 
         <div>
             <br>
@@ -36,7 +33,7 @@
             <br>
         </div>
         <div>
-            <button class="btn btn-success mt-3" type="submit">Login</button>
+            <button class="btn btn-success mt-3" type="submit">Criar</button>
         </div>
     </div>
 
