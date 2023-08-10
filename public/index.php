@@ -17,7 +17,7 @@ try {
     }
 
     if (!file_exists(VIEWS . $data['view'])) {
-        throw new Exception("Essa view {$data['view']} não exixte!");
+        throw new Exception("Essa view {$data['view']} não existe!");
     }
 
     extract($data['data']);

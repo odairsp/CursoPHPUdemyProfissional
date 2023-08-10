@@ -22,6 +22,10 @@ function validate(array $validations)
 
     return $result;
 }
+function singleValidations($field, $validate, $param)
+{
+
+}
 
 function multipleValidations($field, $validate, $param)
 {
@@ -78,5 +82,5 @@ function maxLen($field, $param)
         setFlash($field, 'Tamanho máximo é de ' . $param . ' caracteres!');
         return false;
     }
-    return true;
+    return $data;
 }
