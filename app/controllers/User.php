@@ -39,13 +39,8 @@ class User
             'password' => 'required|maxLen:5'
         ]);
 
-        if (!$validate) {
-
-            return redirect('/user/create');
-        }
-
-
-
-        return redirect('/user/create');
+        return (!$validate) ?
+            setMessageAndRedirect('message', 'Alguma validação falhou', '/user/create') :
+            redirect('/user/create');
     }
 }

@@ -8,7 +8,8 @@ function validate(array $validations)
             multipleValidations($field, $validateTypes) :
             singleValidation($field, $validateTypes);
     }
-    return $result;
+
+     return in_array(false,$result)??$result;
 }
 
 function singleValidation($field, $validateType)
