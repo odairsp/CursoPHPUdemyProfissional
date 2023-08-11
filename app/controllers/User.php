@@ -17,7 +17,7 @@ class User
         }
         $user = findBy('users', 'id', $params['user']);
         return [
-            'view' => 'home.php',
+            'view' => 'home',
             'data' => ['title' => 'Show', 'user' => $user]
         ];
     }
@@ -25,7 +25,7 @@ class User
     public function create()
     {
         return [
-            'view' => 'create.php',
+            'view' => 'create',
             'data' => ['title' => 'Create']
         ];
     }
@@ -35,12 +35,21 @@ class User
         $validate = validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'email' => 'email|unique:users',
+            'email' => 'email|required',
             'password' => 'required|maxLen:5'
         ]);
 
-        return (!$validate) ?
-            setMessageAndRedirect('message', 'Alguma validação falhou', '/user/create') :
-            redirect('/user/create');
+        if (!$validate) {
+
+            return redirect('/user/create');
+        }
+
+        $validate['password'] = password_hash($validate['password'], PASSWORD_DEFAULT);
+        $created = create('users', $validate);
+        if (!$created) {
+            setFlash('message', "ERRO ao cadastrar!");
+            return redirect('/user/create');
+        }
+        return redirect('/');
     }
 }

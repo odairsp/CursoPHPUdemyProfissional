@@ -8,7 +8,7 @@ class Login
     {
         $users = all('users');
         return [
-            'view' => 'login.php',
+            'view' => 'login',
             'data' => ['title' => 'Login']
         ];
     }
@@ -29,7 +29,7 @@ class Login
             return setMessageAndRedirect('message', 'Usuário inexistente!', '/login');
         }
 
-        if ($password != $user->password) {
+        if (!password_verify($password, $user->password)) {
 
             return setMessageAndRedirect('message', 'Usuário ou senha errados', '/login');
         }
