@@ -22,6 +22,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 axios.defaults.headers = {
+    "Content-type": "application/json",
     X_REQUEST_WITH: "XMLHttpRequest"
 }
 async function loadUsers() {
