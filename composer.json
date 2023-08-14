@@ -15,7 +15,8 @@
             "app/helpers/flashMessages.php",
             "app/helpers/sessions.php",
             "app/helpers/validations.php",
-            "app/helpers/validate.php"
+            "app/helpers/validate.php",
+            "app/helpers/functions.php"
         ],
         "psr-4": {
             "app\\": "app"
