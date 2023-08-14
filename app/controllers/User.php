@@ -52,4 +52,8 @@ class User
         }
         return redirect('/');
     }
+
+    public function update()
+    {
+    }
 }
