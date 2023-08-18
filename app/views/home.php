@@ -3,16 +3,45 @@
 <h2>Users</h2>
 
 <div>
-    <ul id="home-list">
-        <?php
-        if (isset($users)) :
-            foreach ($users as $user) : ?>
-        <li><?= $user->firstName ?> | <a href="/user/<?= $user->id ?>">detalhes</a></li>
-        <?php endforeach; ?>
-        <?php else : ?>
-        <li><?= $user->firstName ?> | <a href="/user/<?= $user->id ?>">detalhes</a></li>
-        <?php endif ?>
-    </ul>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped
+        table-hover	
+        table-borderless
+        table-primary
+        align-middle">
+            <thead class="table-light">
+                <tr class="table-primary">
+                    <th>Nome</th>
+                    <th>obs.</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+
+                <?php
+            if (isset($users)) :
+                foreach ($users as $user) : ?>
+                <tr class="table-primary">
+                    <td><?= $user->firstName ?></td>
+                    <td><a href="/user/<?= $user->id ?>">detalhes</a></td>
+                </tr>
+                <?php endforeach; ?>
+                <?php else : ?>
+                <tr class="table-primary">
+                    <td><?= $user->firstName ?></td>
+                    <td><a href="/user/<?= $user->id ?>">detalhes</a></td>
+                </tr>
+                <?php endif ?>
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+
 </div>
 
 <?= $this->start('script') ?>
